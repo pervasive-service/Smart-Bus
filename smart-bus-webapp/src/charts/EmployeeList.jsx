@@ -21,12 +21,45 @@ const EmployeeList = ({ employees }) => {
     setSearchTerm(e.target.value);
   };
 
+  // const filterEmployees = () => {
+  //   // const filtered = employees.filter(employee =>
+  //   //   employee.firstName.toLowerCase().includes(searchTerm.toLowerCase()) &&
+  //   //   filters[employee.gender.toLowerCase()] &&
+  //   //   filters[employee.isActive ? 'active' : 'inactive']
+  //   // );
+  //   // setFilteredEmployees(filtered);
+  // };
   const filterEmployees = () => {
-    const filtered = employees.filter(employee =>
-      employee.firstName.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      filters[employee.gender.toLowerCase()] &&
-      filters[employee.isActive ? 'active' : 'inactive']
-    );
+    if (!employees || employees.length === 0) {
+      setFilteredEmployees([]);
+      return;
+    }
+  
+    const dynamicFilter = (employee, filters) => {
+      for (const key in filters) {
+        if (filters.hasOwnProperty(key)) {
+          const filterValue = filters[key];
+          const employeeValue = employee[key];
+  
+          if (employeeValue === undefined || employeeValue === null) {
+            return false;
+          }
+  
+          if (typeof filterValue === 'string') {
+            if (!employeeValue.toLowerCase().includes(filterValue.toLowerCase())) {
+              return false;
+            }
+          } else if (typeof filterValue === 'boolean') {
+            if (filterValue !== (employeeValue ? 'active' : 'inactive')) {
+              return false;
+            }
+          }
+        }
+      }
+      return true;
+    };
+  
+    const filtered = employees.filter(employee => dynamicFilter(employee, filters));
     setFilteredEmployees(filtered);
   };
 
