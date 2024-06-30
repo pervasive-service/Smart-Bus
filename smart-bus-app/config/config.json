@@ -1,0 +1,17 @@
+{
+  "mongoURL": "mongodb://127.0.0.1:27017/smart_bus_db",
+  "secretKey": "Smart-Bus",
+  "server": {
+    "name": "Smart-Bus",
+    "host": "127.0.0.1",
+    "port": 8080,
+    "uploadLimit":20
+  },
+  "emailConfig": {
+    "service": "gmail",
+    "auth": {
+      "user": "sandipkalsait0@gmail.com",
+      "pass": "Test@124"
+    }
+  }
+}

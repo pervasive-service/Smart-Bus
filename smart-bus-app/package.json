@@ -1,0 +1,38 @@
+{
+  "name": "smart-bus-app",
+  "version": "1.0.0",
+  "description": "Sophisticated SaaS platform designed to streamline and optimize the management of bus fleets for transportation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "pm2 start index.js --name smart-bus-app",
+    "stop": "pm2 stop smart-bus-app"
+  },
+  "keywords": [
+    "Fleet",
+    "Management",
+    "Bus",
+    "Fleet",
+    "Optimization",
+    "Driver",
+    "Management",
+    "Maintenance",
+    "Scheduling",
+    "Automated",
+    "Scheduling"
+  ],
+  "author": "Sandip.Kalsait",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.19.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.2.3",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.13",
+    "path": "^0.12.7",
+    "pm2": "^5.3.1"
+  }
+}

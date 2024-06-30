@@ -1,0 +1,99 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+  }
+  
+  .navbar-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .sidebar-toggle-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  h1 {
+    margin-left: 10px;
+    margin-right: 1rem;
+    text-wrap: nowrap;
+  }
+  
+  .navbar-center {
+    position: relative;
+    width: 30%;
+  }
+  
+  .search-input {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    height: 5vh;
+  }
+  
+  .search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+  }
+  
+  .navbar-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .messages-btn, .profile-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 20px;
+    /* margin-right: 5rem; */
+  }
+  .profile-btn
+  {
+    margin-right: 5rem;
+  } 
+  
+  .messages-dropdown, .profile-options {
+    position: absolute;
+    right: 20px;
+    top: 60px;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 200px;
+    z-index: 1000;
+    
+  }
+  
+  .messages-dropdown p, .profile-options button {
+    margin: 10px 0;
+  }
+  
+  .profile-options button {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    text-align: left;
+  }
+  
+  .profile-options button:hover {
+    background-color: #f0f0f0;
+  }
+  
