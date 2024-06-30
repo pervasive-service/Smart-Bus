@@ -1,0 +1,25 @@
+  /* Chip styles for multiple select */
+  .chip {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    background-color: #007bff; /* Blue */
+    color: #fff;
+    border-radius: 16px;
+    cursor: default;
+  }
+  
+  .chip:last-child {
+    margin-right: 0;
+  }
+  
+  .chip span {
+    margin-right: 1px;
+    cursor: pointer;
+  }
+  
+  .chip span:hover {
+    font-weight: bold;
+  }
+  

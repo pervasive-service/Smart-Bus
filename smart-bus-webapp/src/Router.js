@@ -7,16 +7,22 @@ import RouteManagement from './pages/RouteManagement';
 import Settings from './pages/Settings';
 import UserProfilePage from './pages/UserProfilePage';
 import LoginPage from './pages/SignInPage';
-import HomePage from './pages/HomePage';
+import EmployeeManagement from './pages/EmployeeManagement';
 // import RegisterPage from './pages/RegisterPage';
 import ProtectedRoute from './utils/ProtectedRoutes';
 import BulkUploadPage from './pages/BulkUploadPage';
+import BusManagement from './pages/BusManagement';
+import ScheduleManagement from './pages/ScheduleManagement';
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/home" element={ <ProtectedRoute><HomePage /></ProtectedRoute>  } />
+      {/* <Route path="/home" element={ <ProtectedRoute><EmployeeManagement /></ProtectedRoute>  } /> */}
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/trip" element={<TripManagement />} />
+      <Route path="/home" element={<Dashboard />} />
+      <Route path="/fleet-management" element={<TripManagement />} />
+      <Route path="/vehicles" element={<BusManagement />} />
+      <Route path="/employees" element={<EmployeeManagement />} />
+      <Route path="/schedules" element={<ScheduleManagement />} />
       <Route path="/routes" element={<RouteManagement />} />
       <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute><UserProfilePage /></ProtectedRoute>} />

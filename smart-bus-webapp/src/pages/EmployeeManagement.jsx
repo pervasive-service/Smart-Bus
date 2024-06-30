@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react';
 // import BusCharts from '../charts/BusCharts';
 import EmployeeList from '../charts/EmployeeList';
 import BusList from '../charts/BusList';
-import './HomePage.css'; // Import CSS file
+import './EmployeeManagement.css'; // Import CSS file
 import { useAuth } from "../contexts/AuthContext";
 
-const HomePage = () => {
+const EmployeeManagement = () => {
   const [employees, setEmployees] = useState([]);
   const [buses, setBuses] = useState([]);
   const context = useAuth();
@@ -56,4 +56,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default EmployeeManagement;

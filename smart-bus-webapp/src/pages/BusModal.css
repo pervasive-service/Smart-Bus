@@ -1,0 +1,27 @@
+/* BusModal.css */
+
+
+/* Chip styles for multiple select */
+.bus-chip {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    background-color: #007bff; /* Blue */
+    color: #fff;
+    border-radius: 16px;
+    cursor: default;
+}
+  
+.bus-chip:last-child {
+    margin-right: 0;
+}
+  
+.bus-chip span {
+    margin-right: 1px;
+    cursor: pointer;
+}
+  
+.bus-chip span:hover {
+    font-weight: bold;
+}

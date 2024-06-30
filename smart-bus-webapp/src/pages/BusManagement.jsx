@@ -1,20 +1,17 @@
-// src/pages/TripManagement.jsx
-import "./TripManagement.css";
-// src/pages/TripManagement.jsx
 import React, { useState, useEffect } from "react";
-// import { Button, Table, TableHead, TableBody, TableRow, TableCell, TextField, Box, Grid } from '@mui/material';
-import { Button, Table, TableHead, TableBody, TableRow, TableCell, TextField, Box, Grid, Chip, IconButton, Modal, Typography, FormControl, InputLabel, Select, MenuItem, FormControlLabel, Checkbox } from '@mui/material';
-import TripModal from './TripModal';
+import { Button, Table, TableHead, TableBody, TableRow, TableCell, TextField, Box, Grid, Chip } from '@mui/material';
+import BusModal from './BusModal';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from '@mui/icons-material/Search';
-import FilterListIcon from '@mui/icons-material/FilterList';
-const TripManagement = () => {
-  const [trips, setTrips] = useState([]);
+import "./BusManagement.css"
+
+const BusManagement = () => {
+  const [buses, setBuses] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [filters, setFilters] = useState([]);
-  const [currentTrip, setCurrentTrip] = useState({
+  const [currentBus, setCurrentBus] = useState({
     id: "",
     name: "",
     date: "",
@@ -22,47 +19,51 @@ const TripManagement = () => {
     stops: [],
     destination: "",
     departureTime: "",
+    busNumber: "",
+    driver: "",
   });
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Fetch trips (useEffect can be used if fetching from an API)
   useEffect(() => {
-    // Sample data, replace with API call if needed
-    const sampleTrips = [
+    const sampleBuses = [
       {
         id: "1",
-        name: "Trip 1",
+        name: "Bus 1",
         date: "2024-07-01",
         time: "10:00",
         stops: ["Stop 1", "Stop 2"],
         destination: "Destination 1",
         departureTime: "09:00",
+        busNumber: "BUS-001",
+        driver: "John Doe",
       },
       {
         id: "2",
-        name: "Trip 2",
+        name: "Bus 2",
         date: "2024-07-02",
         time: "11:00",
         stops: ["Stop 3", "Stop 4"],
         destination: "Destination 2",
         departureTime: "10:00",
+        busNumber: "BUS-002",
+        driver: "Jane Smith",
       },
     ];
-    setTrips(sampleTrips);
+    setBuses(sampleBuses);
   }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setCurrentTrip({ ...currentTrip, [name]: value });
+    setCurrentBus({ ...currentBus, [name]: value });
   };
 
   const handleStopsChange = (stops) => {
-    setCurrentTrip({ ...currentTrip, stops });
+    setCurrentBus({ ...currentBus, stops });
   };
 
-  const handleAddTrip = () => {
-    setTrips([...trips, { ...currentTrip, id: Date.now().toString() }]);
-    setCurrentTrip({
+  const handleAddBus = () => {
+    setBuses([...buses, { ...currentBus, id: Date.now().toString() }]);
+    setCurrentBus({
       id: "",
       name: "",
       date: "",
@@ -70,21 +71,23 @@ const TripManagement = () => {
       stops: [],
       destination: "",
       departureTime: "",
+      busNumber: "",
+      driver: "",
     });
     setShowModal(false);
   };
 
-  const handleEditTrip = (id) => {
-    const trip = trips.find((trip) => trip.id === id);
-    setCurrentTrip(trip);
+  const handleEditBus = (id) => {
+    const bus = buses.find((bus) => bus.id === id);
+    setCurrentBus(bus);
     setShowModal(true);
   };
 
-  const handleUpdateTrip = () => {
-    setTrips(
-      trips.map((trip) => (trip.id === currentTrip.id ? currentTrip : trip))
+  const handleUpdateBus = () => {
+    setBuses(
+      buses.map((bus) => (bus.id === currentBus.id ? currentBus : bus))
     );
-    setCurrentTrip({
+    setCurrentBus({
       id: "",
       name: "",
       date: "",
@@ -92,16 +95,18 @@ const TripManagement = () => {
       stops: [],
       destination: "",
       departureTime: "",
+      busNumber: "",
+      driver: "",
     });
     setShowModal(false);
   };
 
-  const handleDeleteTrip = (id) => {
-    setTrips(trips.filter((trip) => trip.id !== id));
+  const handleDeleteBus = (id) => {
+    setBuses(buses.filter((bus) => bus.id !== id));
   };
 
   const handleOpenModal = () => {
-    setCurrentTrip({
+    setCurrentBus({
       id: "",
       name: "",
       date: "",
@@ -109,6 +114,8 @@ const TripManagement = () => {
       stops: [],
       destination: "",
       departureTime: "",
+      busNumber: "",
+      driver: "",
     });
     setShowModal(true);
   };
@@ -118,19 +125,18 @@ const TripManagement = () => {
   };
 
   const handleSubmit = () => {
-    if (currentTrip.id) {
-      handleUpdateTrip();
+    if (currentBus.id) {
+      handleUpdateBus();
     } else {
-      handleAddTrip();
+      handleAddBus();
     }
   };
 
-  // Filter trips based on search term and selected filters
-  const filteredTrips = trips.filter(
-    (trip) =>
-      trip.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+  const filteredBuses = buses.filter(
+    (bus) =>
+      bus.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
       (filters.length === 0 ||
-        filters.some((filter) => trip.stops.includes(filter)))
+        filters.some((filter) => bus.stops.includes(filter)))
   );
 
   const handleAddFilter = (filter) => {
@@ -142,20 +148,16 @@ const TripManagement = () => {
   const handleDeleteFilter = (filter) => {
     setFilters(filters.filter((f) => f !== filter));
   };
-  console.log('trips:', trips);
-  console.log('searchTerm:', searchTerm);
-  console.log('filters:', filters);
-  console.log('filteredTrips:', filteredTrips);
 
   return (
     <>
-      <h1>Fleet Management Page</h1>
+      <h1>Bus Management Page</h1>
       <div className="container">
         <Grid container spacing={1} alignItems="center">
           <Grid item xs={10} sm={9}>
             <TextField
               id="search"
-              label="Search by Trip Name"
+              label="Search by Bus Name"
               variant="outlined"
               size="small"
               fullWidth
@@ -165,11 +167,8 @@ const TripManagement = () => {
                 endAdornment: <SearchIcon />,
               }}
             />
-
-
           </Grid>
           <Grid item xs={8} sm={3} style={{ textAlign: "right" }}>
-      
             <Button
               className="add-button"
               variant="contained"
@@ -177,68 +176,61 @@ const TripManagement = () => {
               startIcon={<AddIcon />}
               onClick={handleOpenModal}
             >
-              Add Trip
+              Add Bus
             </Button>
           </Grid>
-          {/* <Grid item xs={12} sm={6} style={{ textAlign: 'right' }}>
-          <IconButton
-            aria-label="filter"
-            onClick={handleOpenFilterModal}
-          >
-            <FilterListIcon />
-          </IconButton>
-        </Grid> */}
         </Grid>
         <Box mt={2}>
-        {filters.map(filter => (
-          <Chip
-            key={filter}
-            label={filter}
-            onDelete={() => handleDeleteFilter(filter)}
-            color="primary"
-            variant="outlined"
-            sx={{ mr: 1, mb: 1 }}
-          />
-        ))}
-      </Box>
-        <TripModal
+          {filters.map(filter => (
+            <Chip
+              key={filter}
+              label={filter}
+              onDelete={() => handleDeleteFilter(filter)}
+              color="primary"
+              variant="outlined"
+              sx={{ mr: 1, mb: 1 }}
+            />
+          ))}
+        </Box>
+        <BusModal
           show={showModal}
           handleClose={handleCloseModal}
-          trip={currentTrip}
+          bus={currentBus}
           handleInputChange={handleInputChange}
           handleStopsChange={handleStopsChange}
           handleSubmit={handleSubmit}
         />
-        <h2>Trip List</h2>
+        <h2>Bus List</h2>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Trip Name</TableCell>
+              <TableCell>Bus Name</TableCell>
               <TableCell>Date</TableCell>
               <TableCell>Time</TableCell>
               <TableCell>Stops</TableCell>
               <TableCell>Destination</TableCell>
               <TableCell>Departure Time</TableCell>
+              <TableCell>Bus Number</TableCell>
+              <TableCell>Driver</TableCell>
               <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredTrips.map((trip) => (
-              <TableRow key={trip.id}>
-                <TableCell>{trip.name}</TableCell>
-                <TableCell>{trip.date}</TableCell>
-                <TableCell>{trip.time}</TableCell>
-                <TableCell>{trip.stops.join(", ")}</TableCell>
-                <TableCell>{trip.destination}</TableCell>
-                <TableCell>{trip.departureTime}</TableCell>
+            {filteredBuses.map((bus) => (
+              <TableRow key={bus.id}>
+                <TableCell>{bus.name}</TableCell>
+                <TableCell>{bus.date}</TableCell>
+                <TableCell>{bus.time}</TableCell>
+                <TableCell>{bus.stops.join(", ")}</TableCell>
+                <TableCell>{bus.destination}</TableCell>
+                <TableCell>{bus.departureTime}</TableCell>
+                <TableCell>{bus.busNumber}</TableCell>
+                <TableCell>{bus.driver}</TableCell>
                 <TableCell>
-                  <Button size="small" onClick={() => handleEditTrip(trip.id)}>
+                  <Button size="small" onClick={() => handleEditBus(bus.id)}>
                     <EditIcon />
                   </Button>
-                  <Button
-                    size="small"
-                    onClick={() => handleDeleteTrip(trip.id)}
-                  >
+                  <Button size="small" onClick={() => handleDeleteBus(bus.id)}>
                     <DeleteIcon />
                   </Button>
                 </TableCell>
@@ -251,4 +243,4 @@ const TripManagement = () => {
   );
 };
 
-export default TripManagement;
+export default BusManagement;

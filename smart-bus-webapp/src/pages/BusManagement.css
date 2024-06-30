@@ -1,0 +1,108 @@
+
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+  
+.bus-container {
+    max-width: 800px;
+    margin: 5rem auto;
+    padding: 20px;
+}
+  
+.bus-h1, .bus-h2 {
+    color: #333;
+}
+  
+.bus-add-button {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+  
+.bus-add-button:hover {
+    background-color: #0056b3;
+}
+  
+.bus-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.bus-modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+  
+.bus-form {
+    display: flex;
+    flex-direction: column;
+}
+  
+.bus-form > * {
+    margin-bottom: 15px;
+}
+  
+.bus-form > *:last-child {
+    margin-bottom: 0;
+}
+  
+.bus-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+  
+.bus-table th, .bus-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+  
+.bus-table th {
+    background-color: #f0f0f0;
+}
+  
+.bus-table td {
+    background-color: #fff;
+}
+  
+.bus-table td button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+  
+.bus-table td button:hover {
+    background-color: #f0f0f0;
+}
+  
+.bus-button {
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    margin: 1rem;
+}
+  
+.bus-btn-container button {
+    margin: 1rem;
+}

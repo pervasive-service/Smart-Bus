@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useCallback } from 'react';
 import './Employee.css';
 
 const EmployeeList = ({ employees }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [showFilterModal, setShowFilterModal] = useState(false);
+  
   const [filters, setFilters] = useState({
     active: true,
     inactive: true,
@@ -29,22 +30,23 @@ const EmployeeList = ({ employees }) => {
   //   // );
   //   // setFilteredEmployees(filtered);
   // };
-  const filterEmployees = () => {
+ 
+  const filterEmployees = useCallback(() => {
     if (!employees || employees.length === 0) {
       setFilteredEmployees([]);
       return;
     }
-  
+
     const dynamicFilter = (employee, filters) => {
       for (const key in filters) {
         if (filters.hasOwnProperty(key)) {
           const filterValue = filters[key];
           const employeeValue = employee[key];
-  
+
           if (employeeValue === undefined || employeeValue === null) {
             return false;
           }
-  
+
           if (typeof filterValue === 'string') {
             if (!employeeValue.toLowerCase().includes(filterValue.toLowerCase())) {
               return false;
@@ -58,10 +60,14 @@ const EmployeeList = ({ employees }) => {
       }
       return true;
     };
-  
+
     const filtered = employees.filter(employee => dynamicFilter(employee, filters));
     setFilteredEmployees(filtered);
-  };
+  }, [employees, filters]);
+
+  useEffect(() => {
+    filterEmployees();
+  }, [filterEmployees]);
 
   const toggleFilterModal = () => {
     setShowFilterModal(!showFilterModal);
